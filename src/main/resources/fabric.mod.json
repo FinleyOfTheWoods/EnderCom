@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "endercom",
+  "version": "${version}",
+  "name": "EnderCom",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MPL-2.0",
+  "icon": "assets/endercom/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "main": [
+      "uk.co.finleyofthewoods.endercom.Endercom"
+    ]
+  },
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": ">=${minecraft_version}"
+  }
+}
