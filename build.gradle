@@ -10,6 +10,7 @@ base {
     archivesName = project.archives_base_name
 }
 
+loom.log4jConfigs.from "log4j-dev.xml"
 
 repositories {
     // Add repositories to retrieve artifacts from in here.
