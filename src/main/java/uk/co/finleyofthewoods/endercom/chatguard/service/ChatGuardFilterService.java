@@ -2,6 +2,7 @@ package uk.co.finleyofthewoods.endercom.chatguard.service;
 
 import org.jspecify.annotations.NonNull;
 import uk.co.finleyofthewoods.endercom.chatguard.configuration.ChatGuardConfig;
+import uk.co.finleyofthewoods.endercom.chatguard.matcher.BlockedTermMatcher;
 import uk.co.finleyofthewoods.endercom.config.EnderComConfig;
 import java.util.*;
 
@@ -15,10 +16,18 @@ import static uk.co.finleyofthewoods.endercom.constant.EnderComConstants.log;
  * @author FinleyOfTheWoods
  */
 public class ChatGuardFilterService {
+    private static ChatGuardFilterService INSTANCE;
     private static final ChatGuardConfig chatGuardConfig = EnderComConfig.get().getChatGuardConfig();
     private volatile BlockedTermMatcher matcher = new BlockedTermMatcher(chatGuardConfig.getBlockedWords());
 
     public ChatGuardFilterService() {
+    }
+
+    public static ChatGuardFilterService get() {
+        if (INSTANCE == null) {
+            INSTANCE = new ChatGuardFilterService();
+        }
+        return INSTANCE;
     }
 
     /**
@@ -40,4 +49,11 @@ public class ChatGuardFilterService {
         return match.isEmpty();
     }
 
+    public void addBlockedWord(String word) {
+        chatGuardConfig.addBlockedWord(word);
+    }
+
+    public void removeBlockedWord(String word) {
+        chatGuardConfig.removeBlockedWord(word);
+    }
 }

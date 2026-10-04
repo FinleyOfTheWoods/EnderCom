@@ -30,7 +30,7 @@ public class EnderComConfig {
 
     public EnderComConfig() {
         this.enabled = true;
-        this.chatGuardConfig = new ChatGuardConfig();
+        this.chatGuardConfig = ChatGuardConfig.get();
     }
 
     /**

@@ -15,19 +15,19 @@ import static uk.co.finleyofthewoods.endercom.constant.EnderComConstants.log;
  * @author FinleyOfTheWoods
  */
 public class ChatGuardMinecraftInterceptor {
-    private static final ChatGuardFilterService filterService = new ChatGuardFilterService();
+    private static final ChatGuardFilterService filterService = ChatGuardFilterService.get();
 
     /**
      * Intercept a chat message and check if it should be allowed or rejected.
      * @param message {@link PlayerChatMessage} sent by the player
      * @param player {@link ServerPlayer} sending the message
-     * @param bound {@link ChatType.Bound}
+     * @param ignored {@link ChatType.Bound}
      * @return {@code true} if the message should be allowed, {@code false} otherwise
      */
     public static boolean intercept(
             @NonNull PlayerChatMessage message,
             @NonNull ServerPlayer player,
-            ChatType.Bound bound
+            ChatType.Bound ignored
     ) {
         log.debug("Intercepting chat message from: {}", player.getPlainTextName());
         String body = message.signedBody().content();

@@ -1,4 +1,4 @@
-package uk.co.finleyofthewoods.endercom.chatguard.service;
+package uk.co.finleyofthewoods.endercom.chatguard.matcher;
 
 import org.jspecify.annotations.NonNull;
 
