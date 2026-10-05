@@ -29,6 +29,7 @@ public class ChatGuardMinecraftInterceptor {
             @NonNull ServerPlayer player,
             ChatType.Bound ignored
     ) {
+        if (!filterService.isEnabled()) return true;
         log.debug("Intercepting chat message from: {}", player.getPlainTextName());
         String body = message.signedBody().content();
         return filterService.filter(body);

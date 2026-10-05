@@ -20,8 +20,7 @@ public class ChatGuardFilterService {
     private static final ChatGuardConfig chatGuardConfig = EnderComConfig.get().getChatGuardConfig();
     private volatile BlockedTermMatcher matcher = new BlockedTermMatcher(chatGuardConfig.getBlockedWords());
 
-    public ChatGuardFilterService() {
-    }
+    public ChatGuardFilterService() {}
 
     public static ChatGuardFilterService get() {
         if (INSTANCE == null) {
@@ -43,10 +42,14 @@ public class ChatGuardFilterService {
      * @return {@code true} if the message is allowed, {@code false} otherwise
      */
     public boolean filter(@NonNull String message) {
-        if (!chatGuardConfig.isEnabled()) return true;
         Optional<String> match = matcher.findMatch(message);
         match.ifPresent(term -> log.warn("Blocked message, matched term: {}", term));
         return match.isEmpty();
+    }
+
+    public boolean isEnabled() {
+        log.debug("ChatGuard is: {}", chatGuardConfig.isEnabled() ? "enabled" : "disabled");
+        return chatGuardConfig.isEnabled();
     }
 
     public void addBlockedWord(String word) {

@@ -5,6 +5,12 @@ import org.jspecify.annotations.Nullable;
 
 import java.util.Objects;
 
+/**
+ * Configuration class for ChatRelayService.
+ *
+ * @since 1.0
+ * @author FinleyOfTheWoods
+ */
 public class ChatRelayConfig {
     private static ChatRelayConfig INSTANCE;
     private boolean enabled;
