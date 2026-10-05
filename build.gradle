@@ -10,6 +10,7 @@ base {
     archivesName = project.archives_base_name
 }
 
+loom.log4jConfigs.from "log4j-dev.xml"
 
 repositories {
     // Add repositories to retrieve artifacts from in here.
@@ -17,6 +18,7 @@ repositories {
     // Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
     // See https://docs.gradle.org/current/userguide/declaring_repositories.html
     // for more information about repositories.
+    mavenCentral()
 }
 
 dependencies {
@@ -25,7 +27,8 @@ dependencies {
     implementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
     implementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-    implementation("org.xerial:sqlite-jdbc:3.7.2")
+    implementation('org.xerial:sqlite-jdbc:3.41.2.2')
+    include(implementation('me.lucko:fabric-permissions-api:0.7.0'))
 }
 
 processResources {
