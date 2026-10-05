@@ -1,7 +1,9 @@
 package uk.co.finleyofthewoods.endercom.chatguard.configuration;
 
 import org.jspecify.annotations.NonNull;
+import org.jspecify.annotations.Nullable;
 
+import java.util.Objects;
 import java.util.Set;
 
 import static uk.co.finleyofthewoods.endercom.constant.EnderComConstants.log;
@@ -45,7 +47,7 @@ public class ChatGuardConfig {
         this.blockedWords = blockedWords;
     }
 
-    public void addBlockedWord(String word) {
+    public void addBlockedWord(@NonNull String word) {
         if (this.blockedWords.contains(word)) {
             log.debug("Word {} already exists in ChatGuard filter", word);
             return;
@@ -54,13 +56,26 @@ public class ChatGuardConfig {
         this.blockedWords.add(word);
     }
 
-    public void removeBlockedWord(String word) {
+    public void removeBlockedWord(@NonNull String word) {
         if (!this.blockedWords.contains(word)) {
             log.debug("Word {} does not exist in ChatGuard filter", word);
             return;
         }
         log.debug("Removing {} from ChatGuard filter", word);
         this.blockedWords.remove(word);
+    }
+
+    @Override
+    public boolean equals(@Nullable Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        ChatGuardConfig that = (ChatGuardConfig) o;
+        return enabled == that.enabled
+                && Objects.equals(blockedWords, that.blockedWords);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(enabled, blockedWords);
     }
 
     @Override

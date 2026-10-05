@@ -5,6 +5,7 @@ import com.google.gson.GsonBuilder;
 import net.fabricmc.loader.api.FabricLoader;
 import org.jspecify.annotations.NonNull;
 import uk.co.finleyofthewoods.endercom.chatguard.configuration.ChatGuardConfig;
+import uk.co.finleyofthewoods.endercom.chatrelay.configuration.ChatRelayConfig;
 
 import java.io.File;
 import java.io.FileReader;
@@ -27,10 +28,12 @@ public class EnderComConfig {
 
     private boolean enabled;
     private ChatGuardConfig chatGuardConfig;
+    private ChatRelayConfig chatRelayConfig;
 
     public EnderComConfig() {
         this.enabled = true;
         this.chatGuardConfig = ChatGuardConfig.get();
+        this.chatRelayConfig = ChatRelayConfig.get();
     }
 
     /**
@@ -89,8 +92,16 @@ public class EnderComConfig {
         return chatGuardConfig;
     }
 
+    public @NonNull ChatRelayConfig getChatRelayConfig() {
+        return chatRelayConfig;
+    }
+
     public void setChatGuardConfig(@NonNull ChatGuardConfig chatGuardConfig) {
         this.chatGuardConfig = chatGuardConfig;
+    }
+
+    public void setChatRelayConfig(@NonNull ChatRelayConfig chatRelayConfig) {
+        this.chatRelayConfig = chatRelayConfig;
     }
 
     public boolean isEnabled() {
